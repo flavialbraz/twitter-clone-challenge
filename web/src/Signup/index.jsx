@@ -51,7 +51,7 @@ export function Signup({ signInUser }){
                                 value={formik.values.nome}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur} 
-                                disabled={formik.isSubmitting}
+                                // disabled={formik.isSubmitting}
                         />
                         {(formik.touched.name && formik.errors.name) && (
                         <div className="text-red-500 text-sm">{formik.errors.name}</div>
@@ -66,7 +66,7 @@ export function Signup({ signInUser }){
                                 value={formik.values.username}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}  
-                                disabled={formik.isSubmitting}
+                                // disabled={formik.isSubmitting}
                         />
                          {(formik.touched.username && formik.errors.username) && ( 
                           <div className="text-red-500 text-sm">{formik.errors.username}</div> )}
@@ -81,7 +81,7 @@ export function Signup({ signInUser }){
                                 value={formik.values.email}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}  
-                                disabled={formik.isSubmitting}
+                                // disabled={formik.isSubmitting}
                         />
                          {(formik.touched.email && formik.errors.email) && (
                              <div className="text-red-500 text-sm">{formik.errors.email}</div>)}
@@ -95,7 +95,7 @@ export function Signup({ signInUser }){
                                 value={formik.values.password}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}  
-                                disabled={formik.isSubmitting}
+                                // disabled={formik.isSubmitting}
                         />
                          {(formik.touched.password && formik.errors.password) && 
                             (<div className='text-red-500 text-sm'>{formik.errors.password}</div>)}
