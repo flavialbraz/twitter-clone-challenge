@@ -11,8 +11,10 @@ node_modules
 dist
 dist-ssr
 *.local
-
+.env
 package-lock.json
+
+
 
 # Editor directories and files
 .vscode/*
@@ -24,6 +26,7 @@ package-lock.json
 *.njsproj
 *.sln
 *.sw?
+
 
 # Minhas anotações
 read.md

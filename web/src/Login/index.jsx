@@ -8,15 +8,15 @@ const Input = (props) => (
 
 
 const validationSchema = yup.object({
-    email: yup.string().required('Digite seu email').email(),
+    email: yup.string().required('Digite seu e-mail').email('E-mail inválido.'),
     password: yup.string().required('Digite sua senha')
 })
 
-export default function Login({ signInUser }){
+export function Login({ signInUser }){
 
         const formik = useFormik({
             onSubmit: async values => {
-                const res = await axios.get('http://localhost:5000/login', {
+                const res = await axios.get(`${import.meta.env.VITE_API_HOST}/login`, {
                     auth:{
                         username: values.email,
                         password: values.password
@@ -36,8 +36,12 @@ export default function Login({ signInUser }){
 
     return (
         <>
-        <div className="h-full flex flex-col justify-center p-12 space-y-6">
-                <h1 className="text-platinum text-3xl font-bold">Acesse sua conta</h1>
+        <div className="h-full flex justify-center">
+            <div className="bg-birdBlue lg:flex-1"></div>
+            <div className="flex-1 flex justify-center items-center p-12 space-y-6">
+                <div className="max-w-md flex-1">
+                    <h1 className="text-3xl">Acesse sua conta</h1>
+                    
                 <form className='space-y-6' onSubmit={formik.handleSubmit}>
 
                     <div className="space-y-2">
@@ -47,7 +51,8 @@ export default function Login({ signInUser }){
                                 placeholder="E-mail"
                                 value={formik.values.email}
                                 onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}  
+                                onBlur={formik.handleBlur}
+                                disabled={formik.isSubmitting}
                         />
                          {(formik.touched.email && formik.errors.email) && 
                             (<div className='text-red-500 text-sm'> Digite um e-mail válido.
@@ -60,9 +65,10 @@ export default function Login({ signInUser }){
                                 type="password"
                                 name="password"
                                 placeholder="Senha" 
-                                value={formik.values.password}
+                                alue={formik.values.password}
                                 onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}  
+                                onBlur={formik.handleBlur}
+                                disabled={formik.isSubmitting}
                         />
                          {(formik.touched.password && formik.errors.password) && 
                             (<div className='text-red-500 text-sm'>{formik.errors.password}</div>)}
@@ -70,12 +76,14 @@ export default function Login({ signInUser }){
 
                     <button type="submit" 
                     className="bg-superBlue py-4 rounded-full w-full my-6 font-bold text-md disabled:cursor-not-allowed disabled:opacity-30"
-                    disabled={!formik.isValid || formik.isSubmitting}
+                    disabled={formik.isSubmitting || !formik.isValid}
 
-                    > {formik.isSubmitting ? 'Enviando...' : 'Entrar'} </button>
+                    > {formik.isSubmitting ? 'Enviando...' : 'Entrar' } </button>
                 </form>
     
             <span className="text-silver text-sm text-center"> Não tem uma conta? <a href="/signup" className="text-birdBlue"> Inscreva-se </a></span>
+        </div>
+        </div>
         </div>
         </>
     )
