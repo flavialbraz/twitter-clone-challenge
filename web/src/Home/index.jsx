@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { HeartIcon } from '@heroicons/react/outline'
 import axios from 'axios'
 import { useFormik} from 'formik'
 
+import avatar from './avatar.png'
+ 
 const MAX_TWEET_CHAR = 150
 
 const TweetForm = ({ loggedInUser, onSuccess }) => {
@@ -52,7 +54,7 @@ const TweetForm = ({ loggedInUser, onSuccess }) => {
 
     <div className="flex justify-end items-center space-x-3">
       <span className="text-sm">
-      <span>{formik.values.text.length}</span><span className="text-superBlue">{MAX_TWEET_CHAR}</span>
+      <span>{formik.values.text.length}</span><span className="text-superBlue">/{MAX_TWEET_CHAR}</span>
       </span>
       <button 
       type="submit"
